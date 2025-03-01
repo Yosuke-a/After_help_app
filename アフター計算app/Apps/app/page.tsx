@@ -21,18 +21,17 @@ export default function Home() {
     return perPerson - payment;
   };
 
-
   useEffect(() => {
     const calculatedValue = acc_calc(Number(acc), Number(people_of_junior), Number(payment), Number(all_people));
     setValue(calculatedValue);
   }, [acc, people_of_junior, payment, all_people]);
 
   return (
-    <div className="h-screen flex items-center justify-center bg-white text-gray-900">
+    <div className="h-screen flex items-center justify-center bg-gray-100 text-gray-900">
       
-      <div className="w-full max-w-2xl bg-white border border-blue-900 shadow-xl rounded-2xl p-10 transition-all">
+      <div className="w-full max-w-lg bg-white border border-blue-900 shadow-xl rounded-2xl p-8 transition-all">
         
-        <h1 className="text-center text-5xl font-extrabold tracking-tight text-blue-900 mb-6">
+        <h1 className="text-center text-3xl font-extrabold tracking-tight text-blue-900 mb-8">
           アフター計算ソフト
         </h1>
 
@@ -43,16 +42,23 @@ export default function Home() {
           <People_of_all all_people={all_people} setAllPeople={setAllPeople} />
         </div>
 
-        <div className="mt-8 flex flex-col items-center">
-          <p className="text-3xl font-semibold text-blue-900">
-            💰 支払額: 
-            <span className="text-blue-600 text-5xl font-extrabold ml-2">
-              {additionalPayment}円
-            </span>
-            <button onClick={() => router.push("/Todo")}>Todoリストへ</button>
-          </p>
-        </div>
+        <div className="mt-10 flex flex-col items-center">
+          <p className="text-lg font-semibold text-gray-800">💰 支払額: </p>
+          <span className="text-blue-600 text-6xl font-extrabold my-3">
+            {additionalPayment} 円
+          </span>
 
+          <div className="bg-gray-200 text-gray-900 font-mono text-lg p-3 rounded-lg mt-4 w-full text-center shadow-md">
+            ({acc} - 800 × {people_of_junior}) ÷ ({all_people} - {people_of_junior}) - {payment}
+          </div>
+
+          <button
+            onClick={() => router.push("/Todo")}
+            className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg shadow-md transition duration-200"
+          >
+            Todoリストへ
+          </button>
+        </div>
 
       </div>
 
